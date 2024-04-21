@@ -20,6 +20,7 @@ public:
   void ledState(int pinNumber);
   void ledOn();
   void ledOff();
+  float calculateDistance(float lat1, float lon1, float lat2, float lon2);
 };
 
 #endif

@@ -99,13 +99,17 @@ void loop() {
     Blynk.virtualWrite(V2, SeatCount);
   }
 
-   if (gps.location.isValid())
-  {
-    Serial.print("Latitude: ");
-    Serial.println(gps.location.lat(), 6);
-    Serial.print("Longitude: ");
-    Serial.println(gps.location.lng(), 6);
-    Serial.print("Altitude: ");
-    Serial.println(gps.altitude.meters());
-  }
+  Serial.print("Latitude: ");
+  Serial.print(gps.location.lat(), 6);
+  Serial.print("   Longitude: ");
+  Serial.print(gps.location.lng(), 6);
+  Serial.print("   Distance: ");
+  Serial.println(name.calculateDistance(11.119787, 77.996736, gps.location.lat() , gps.location.lng()));
+
+  float dist = name.calculateDistance(11.119787, 77.996736, gps.location.lat() , gps.location.lng());
+  Blynk.virtualWrite(V6, dist);
+  Blynk.virtualWrite(V0, "Distalnce : " + String(dist));
+  Blynk.virtualWrite(V5, "https://www.google.com/maps?q=" + String(gps.location.lat()) + "," + String(gps.location.lng()));
 }
+
+
